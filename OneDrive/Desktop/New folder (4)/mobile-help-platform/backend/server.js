@@ -15,8 +15,12 @@ app.use(helmet());
 // ── CORS ────────────────────────────────────────────────────
 const allowedOrigins = [
   process.env.FRONTEND_URL || 'http://localhost:5173',
-  'https://mobile-help-platform.vercel.app', // update with your Vercel URL
-];
+  'https://servicebackend-9fuv.vercel.app',
+  'https://servicebackend-9fuv-7arkfbbaw-rahshiv034-5890s-projects.vercel.app',
+  // Also allow any *.vercel.app subdomain for future preview deployments
+  process.env.FRONTEND_URL_PROD,
+  process.env.FRONTEND_URL_PREVIEW,
+].filter(Boolean); // remove undefined/empty values
 
 app.use(
   cors({
