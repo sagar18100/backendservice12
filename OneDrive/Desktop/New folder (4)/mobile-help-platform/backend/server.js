@@ -14,8 +14,10 @@ app.use(helmet());
 
 // ── CORS ────────────────────────────────────────────────────
 const allowedOrigins = [
-  process.env.FRONTEND_URL || 'http://localhost:5173',  'https://shivamai.site',
-  'https://www.shivamai.site',  'https://servicebackend-9fuv.vercel.app',
+  process.env.FRONTEND_URL || 'http://localhost:5173',
+  'https://shivamai.site',
+  'https://www.shivamai.site',
+  'https://servicebackend-9fuv.vercel.app',
   'https://servicebackend-9fuv-7arkfbbaw-rahshiv034-5890s-projects.vercel.app',
   // Also allow any *.vercel.app subdomain for future preview deployments
   process.env.FRONTEND_URL_PROD,
