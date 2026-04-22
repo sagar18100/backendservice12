@@ -70,22 +70,43 @@ app.use((err, req, res, next) => {
   });
 });
 
-// ── MongoDB Connection + Start Server ────────────────────────
-const startServer = async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      serverSelectionTimeoutMS: 5000,
-    });
-    console.log('✅ MongoDB connected successfully');
+// ── MongoDB Connection ────────────────────────────────────────
+let isConnected = false;
 
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
-      console.log(`📡 Health check: http://localhost:${PORT}/health`);
-    });
-  } catch (error) {
-    console.error('❌ MongoDB connection failed:', error.message);
-    process.exit(1);
-  }
+const connectDB = async () => {
+  if (isConnected) return;
+  await mongoose.connect(process.env.MONGODB_URI, {
+    serverSelectionTimeoutMS: 5000,
+  });
+  isConnected = true;
+  console.log('✅ MongoDB connected successfully');
 };
 
-startServer();
+// ── Vercel: connect on each request, then pass to app ────────
+const handler = async (req, res) => {
+  try {
+    await connectDB();
+  } catch (error) {
+    console.error('❌ MongoDB connection failed:', error.message);
+    return res.status(500).json({ success: false, message: 'Database connection failed' });
+  }
+  return app(req, res);
+};
+
+// ── Export for Vercel (serverless) ───────────────────────────
+module.exports = handler;
+
+// ── Local dev: start the server normally ─────────────────────
+if (process.env.NODE_ENV !== 'production' || process.env.VERCEL !== '1') {
+  connectDB()
+    .then(() => {
+      app.listen(PORT, () => {
+        console.log(`🚀 Server running on port ${PORT}`);
+        console.log(`📡 Health check: http://localhost:${PORT}/health`);
+      });
+    })
+    .catch((err) => {
+      console.error('❌ Startup failed:', err.message);
+      process.exit(1);
+    });
+}
