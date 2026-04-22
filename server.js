@@ -112,3 +112,4 @@ if (process.env.NODE_ENV !== 'production' || process.env.VERCEL !== '1') {
       process.exit(1);
     });
 }
+// Deployment trigger: 2026-04-23 001126
