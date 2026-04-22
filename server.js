@@ -13,29 +13,14 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet());
 
 // ── CORS ────────────────────────────────────────────────────
-const allowedOrigins = [
-  process.env.FRONTEND_URL || 'http://localhost:5173',
-  'https://shivamai.site',
-  'https://www.shivamai.site',
-  'https://servicebackend-9fuv.vercel.app',
-  'https://servicebackend-9fuv-7arkfbbaw-rahshiv034-5890s-projects.vercel.app',
-  // Also allow any *.vercel.app subdomain for future preview deployments
-  process.env.FRONTEND_URL_PROD,
-  process.env.FRONTEND_URL_PREVIEW,
-].filter(Boolean); // remove undefined/empty values
-
+// Temporarily allow all origins for debugging - will be restricted later
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (Postman, curl)
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: ['GET', 'POST'],
+    origin: true, // Allow all origins for testing
+    methods: ['GET', 'POST', 'OPTIONS'],
     credentials: true,
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
   })
 );
 
