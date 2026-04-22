@@ -28,6 +28,21 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- Font loading timeout fallback -->
+    <script>
+      // Ensure fallback fonts are used if Google Fonts fail to load
+      document.documentElement.style.fontFamily = "'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+      
+      // Monitor font load with timeout
+      if (document.fonts) {
+        Promise.race([
+          document.fonts.ready,
+          new Promise(resolve => setTimeout(resolve, 3000))
+        ]).then(() => {
+          document.documentElement.style.fontFamily = "'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+        });
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
