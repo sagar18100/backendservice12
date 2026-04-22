@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>Mobile Help Platform | Mobile Software Problem Help</title>
+    <meta
+      name="description"
+      content="Apne mobile ke software problems ke liye yahan madad lein. Hum aapki har mobile software problem solve karenge — Hindi, English ya Hinglish mein likhein."
+    />
+    <meta name="keywords" content="mobile help, mobile software problem, mobile repair, phone help, mobile troubleshoot" />
+    <meta name="author" content="Mobile Help Platform" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mobile Help Platform" />
+    <meta property="og:description" content="Apne mobile software ki problem batayein, hum jald help karenge!" />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>" />
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font loading timeout fallback -->
+    <script>
+      // Ensure fallback fonts are used if Google Fonts fail to load
+      document.documentElement.style.fontFamily = "'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+      
+      // Monitor font load with timeout
+      if (document.fonts) {
+        Promise.race([
+          document.fonts.ready,
+          new Promise(resolve => setTimeout(resolve, 3000))
+        ]).then(() => {
+          document.documentElement.style.fontFamily = "'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
