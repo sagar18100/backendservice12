@@ -1,12 +1,9 @@
 import React from 'react';
 
-const ADMIN_PHONE = import.meta.env.VITE_ADMIN_PHONE || '+916203896072';
-const ADMIN_WHATSAPP = import.meta.env.VITE_ADMIN_WHATSAPP || '916203896072';
-
 const HeroSection = () => {
-  const waMessage = encodeURIComponent(
-    'Namaste! Mujhe apne mobile software mein problem hai. Kya aap help kar sakte hain?'
-  );
+  const scrollToForm = () => {
+    document.getElementById('main-content')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <section className="hero" aria-label="Welcome section">
@@ -35,29 +32,17 @@ const HeroSection = () => {
           hum aapki madad karenge — Hindi, English ya Hinglish mein 🙏
         </p>
 
-        {/* CTA buttons */}
+        {/* Single CTA — scroll to form */}
         <div className="hero-actions">
-          <a
-            href={`https://wa.me/${ADMIN_WHATSAPP}?text=${waMessage}`}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={scrollToForm}
             className="btn-hero btn-whatsapp"
-            id="hero-whatsapp-btn"
-            aria-label="Chat on WhatsApp"
+            id="hero-submit-btn"
+            aria-label="Submit your problem"
           >
-            <span role="img" aria-hidden="true">💬</span>
-            Chat on WhatsApp
-          </a>
-
-          <a
-            href={`tel:${ADMIN_PHONE}`}
-            className="btn-hero btn-call"
-            id="hero-call-btn"
-            aria-label="Call Now"
-          >
-            <span role="img" aria-hidden="true">📞</span>
-            Call Now
-          </a>
+            <span role="img" aria-hidden="true">📝</span>
+            Apni Problem Submit Karein
+          </button>
         </div>
 
         {/* Stats */}
