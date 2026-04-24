@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import HeroSection from './components/HeroSection';
 import ProblemForm from './components/ProblemForm';
 import SuccessMessage from './components/SuccessMessage';
-import FloatingButtons from './components/FloatingButtons';
+
 
 const App = () => {
   const [submittedData, setSubmittedData] = useState(null);
@@ -41,8 +41,6 @@ const App = () => {
         </p>
       </footer>
 
-      {/* Floating WhatsApp + Call buttons */}
-      <FloatingButtons />
     </div>
   );
 };
