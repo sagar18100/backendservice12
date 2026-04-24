@@ -21,6 +21,6 @@
     }
   ],
   "env": {
-    "VITE_API_URL": "https://servicebackend-9fuv.vercel.app"
+    "VITE_API_URL": "https://backendservice12.vercel.app"
   }
 }
